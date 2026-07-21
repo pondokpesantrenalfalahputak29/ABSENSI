@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Absensi Pesantren{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">🕌 Absensi Pesantren</div>
+      <nav>
+        <a href="{{ url_for('beranda') }}" class="{{ 'active' if request.endpoint == 'beranda' }}">
+          <span>📷</span><span class="label">Scan Absensi</span>
+        </a>
+        <a href="{{ url_for('daftar_anggota') }}" class="{{ 'active' if request.endpoint in ['daftar_anggota', 'tambah_anggota', 'ubah_anggota'] }}">
+          <span>👥</span><span class="label">Data Anggota</span>
+        </a>
+        <a href="{{ url_for('laporan') }}" class="{{ 'active' if request.endpoint == 'laporan' }}">
+          <span>📊</span><span class="label">Laporan</span>
+        </a>
+      </nav>
+      <div class="footer-user">
+        {{ session.get('nama_lengkap', '') }}<br>
+        <a href="{{ url_for('logout') }}">Keluar</a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

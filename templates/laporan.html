@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Laporan Absensi{% endblock %}
+
+{% block content %}
+<div class="topbar">
+  <h2>Laporan Absensi</h2>
+  <a href="{{ url_for('export_laporan', dari=dari, sampai=sampai, kelompok=kelompok_terpilih) }}"
+     class="btn btn-secondary">⬇ Export CSV</a>
+</div>
+
+<div class="card">
+  <form method="GET" style="display:flex; gap: var(--space-sm); align-items:flex-end; flex-wrap: wrap;">
+    <div class="field" style="margin-bottom:0;">
+      <label for="dari">Dari Tanggal</label>
+      <input type="date" id="dari" name="dari" value="{{ dari }}">
+    </div>
+    <div class="field" style="margin-bottom:0;">
+      <label for="sampai">Sampai Tanggal</label>
+      <input type="date" id="sampai" name="sampai" value="{{ sampai }}">
+    </div>
+    <div class="field" style="margin-bottom:0;">
+      <label for="kelompok">Kelompok</label>
+      <select id="kelompok" name="kelompok">
+        <option value="">Semua Kelompok</option>
+        {% for k in semua_kelompok %}
+        <option value="{{ k }}" {{ 'selected' if k == kelompok_terpilih }}>{{ k }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Tampilkan</button>
+  </form>
+</div>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>Tanggal</th>
+        <th>Waktu</th>
+        <th>Nama</th>
+        <th>Kelompok</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in data %}
+      <tr>
+        <td>{{ row.tanggal }}</td>
+        <td>{{ row.waktu[11:19] }}</td>
+        <td>{{ row.nama }}</td>
+        <td>{{ row.kelompok or '-' }}</td>
+        <td><span class="chip chip-{{ row.tipe }}">{{ row.tipe|capitalize }}</span></td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5" style="color: var(--on-surface-variant);">Tidak ada data pada rentang tanggal ini.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

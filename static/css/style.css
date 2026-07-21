@@ -1,0 +1,481 @@
+/* ============================================================
+   Emerald Institutional — Design Tokens
+   Diterapkan sesuai spesifikasi desain yang diberikan.
+   ============================================================ */
+
+:root {
+  /* Colors */
+  --surface: #d7fff4;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #bcfeee;
+  --surface-container: #aff6e5;
+  --surface-container-high: #a4f1df;
+  --surface-container-highest: #99ecda;
+  --on-surface: #00362d;
+  --on-surface-variant: #2c655a;
+  --inverse-surface: #00110e;
+  --outline: #498175;
+  --outline-variant: #7fb8ab;
+
+  --primary: #00684f;
+  --on-primary: #c6ffe6;
+  --primary-container: #00fac1;
+  --on-primary-container: #005a43;
+
+  --secondary: #00685a;
+  --on-secondary: #c2fff0;
+  --secondary-container: #4cfcde;
+  --on-secondary-container: #005d50;
+
+  --tertiary: #00647a;
+  --on-tertiary: #e1f6ff;
+  --tertiary-container: #00d2fd;
+  --on-tertiary-container: #004352;
+
+  --error: #b31b25;
+  --on-error: #ffefee;
+  --error-container: #fb5151;
+  --on-error-container: #570008;
+
+  --background: #d7fff4;
+  --on-background: #00362d;
+
+  /* Typography */
+  --font-display: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--outline); /* Level 0: Deep Sage Grey base */
+  color: var(--on-background);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  margin: 0;
+  color: var(--on-surface);
+}
+
+h1 { font-size: 36px; font-weight: 700; line-height: 44px; letter-spacing: -0.02em; }
+h2 { font-size: 28px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; }
+h3 { font-size: 22px; font-weight: 600; line-height: 30px; }
+
+a { color: var(--primary); }
+
+/* ---------- Layout shell ---------- */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--surface-container-lowest);
+  border-right: 1px solid var(--outline-variant);
+  padding: var(--space-md) var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.sidebar .brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--primary);
+  margin-bottom: var(--space-md);
+  padding: 0 var(--space-xs);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px var(--space-xs);
+  border-radius: var(--radius);
+  color: var(--on-surface-variant);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.sidebar nav a:hover {
+  background: var(--surface-container);
+}
+
+.sidebar nav a.active {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  font-weight: 600;
+}
+
+.sidebar .footer-user {
+  margin-top: auto;
+  padding: var(--space-xs);
+  border-top: 1px solid var(--outline-variant);
+  font-size: 13px;
+  color: var(--on-surface-variant);
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--space-md) var(--space-lg);
+  max-width: 1440px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+/* ---------- Cards / surfaces (Level 1) ---------- */
+
+.card {
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: var(--space-md);
+  box-shadow: 0 8px 24px rgba(0, 20, 15, 0.12);
+}
+
+.card + .card { margin-top: var(--space-md); }
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: filter 0.15s ease;
+}
+
+.btn:hover { filter: brightness(1.06); }
+
+.btn-primary { background: var(--primary-container); color: var(--on-primary-container); }
+.btn-secondary { background: var(--secondary-container); color: var(--on-secondary-container); }
+.btn-outline { background: transparent; color: var(--primary); border: 1px solid var(--outline); }
+.btn-danger { background: var(--error-container); color: var(--on-error-container); }
+
+/* ---------- Inputs ---------- */
+
+.field { margin-bottom: var(--space-sm); }
+
+.field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius);
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--primary-container);
+  box-shadow: 0 0 0 3px rgba(0, 250, 193, 0.35);
+}
+
+/* ---------- Tables ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+thead th {
+  text-align: left;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--on-surface-variant);
+  border-bottom: 1px solid var(--outline-variant);
+  position: sticky;
+  top: 0;
+  background: var(--surface-container-lowest);
+}
+
+tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--surface-container);
+  color: var(--on-surface);
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(0, 104, 90, 0.02);
+}
+
+/* ---------- Chips (status absensi) ---------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chip-masuk { background: rgba(0, 250, 193, 0.25); color: var(--on-primary-container); }
+.chip-pulang { background: rgba(0, 210, 253, 0.25); color: var(--on-tertiary-container); }
+
+/* ---------- Flash messages ---------- */
+
+.flash {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin-bottom: var(--space-sm);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.flash-success { background: var(--secondary-container); color: var(--on-secondary-container); }
+.flash-error { background: var(--error-container); color: var(--on-error-container); }
+
+/* ---------- Halaman scan (beranda) ---------- */
+
+.scan-hero {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.scan-hero .jam {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.scan-hero .tanggal {
+  font-size: 18px;
+  color: var(--on-surface-variant);
+  margin-top: 4px;
+}
+
+.scan-status {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  border-radius: var(--radius-xl);
+  background: var(--surface-container);
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.scan-status.ok { background: var(--primary-container); color: var(--on-primary-container); }
+.scan-status.gagal { background: var(--error-container); color: var(--on-error-container); }
+
+#scan-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Auth pages ---------- */
+
+.auth-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--outline);
+  padding: var(--space-md);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg) var(--space-md);
+  box-shadow: 0 12px 32px rgba(0, 20, 15, 0.25);
+}
+
+.auth-card h1 { font-size: 24px; margin-bottom: 4px; }
+.auth-card p.subtitle { color: var(--on-surface-variant); margin-bottom: var(--space-md); font-size: 14px; }
+
+/* ---------- Kartu Identitas (cetak QR) ---------- */
+
+.kartu-wrap {
+  min-height: 100vh;
+  background: var(--surface);
+  padding: var(--space-lg) var(--space-md);
+}
+
+.kartu-toolbar {
+  max-width: 900px;
+  margin: 0 auto var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.id-card {
+  width: 3.375in;
+  height: 2.125in;
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 20, 15, 0.15);
+  border: 1px solid var(--outline-variant);
+  display: flex;
+  overflow: hidden;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.id-card .strip {
+  width: 10px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, var(--primary), var(--tertiary));
+}
+
+.id-card .body {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.id-card .instansi {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9px;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.id-card .nama {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.2;
+  margin-top: 4px;
+  color: var(--on-surface);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.id-card .detail {
+  font-size: 10.5px;
+  color: var(--on-surface-variant);
+  margin-top: 3px;
+  line-height: 1.45;
+}
+
+.id-card .detail b { color: var(--on-surface); font-weight: 600; }
+
+.id-card .footer {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.id-card .kode {
+  font-size: 8.5px;
+  color: var(--outline);
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.id-card .qr {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.id-card .qr img { width: 100%; height: 100%; display: block; }
+
+.kartu-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 3.375in);
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+@media print {
+  body { background: #fff; }
+  .kartu-toolbar { display: none; }
+  .kartu-wrap { padding: 0; background: #fff; }
+  .id-card { box-shadow: none; border: 1px solid #ccc; }
+  .kartu-grid { gap: 0.15in; }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .sidebar { width: 72px; padding: var(--space-sm) 8px; }
+  .sidebar .brand { display: none; }
+  .sidebar nav a span.label { display: none; }
+  .main-content { padding: var(--space-sm); }
+}

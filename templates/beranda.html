@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}Scan Absensi{% endblock %}
+
+{% block content %}
+<div class="topbar">
+  <h2>Scan Absensi</h2>
+</div>
+
+<div class="card scan-hero">
+  <div class="jam" id="jam-realtime">--:--:--</div>
+  <div class="tanggal">{{ hari_ini }}</div>
+
+  <div class="scan-status" id="scan-status">
+    Arahkan kartu ke mesin scanner…
+  </div>
+
+  <!-- Input tersembunyi ini yang menangkap ketikan dari scanner (mode HID) -->
+  <input type="text" id="scan-input" autocomplete="off">
+</div>
+
+<div class="card">
+  <h3 style="margin-bottom: var(--space-sm);">Absensi Terbaru</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Waktu</th>
+        <th>Nama</th>
+        <th>Kelompok</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="feed-terbaru">
+      {% for row in feed %}
+      <tr>
+        <td>{{ row.waktu[11:19] }}</td>
+        <td>{{ row.nama }}</td>
+        <td>{{ row.kelompok or '-' }}</td>
+        <td><span class="chip chip-{{ row.tipe }}">{{ row.tipe|capitalize }}</span></td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4" style="color: var(--on-surface-variant);">Belum ada data absensi hari ini.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Jam real-time
+  function updateJam() {
+    const now = new Date();
+    document.getElementById('jam-realtime').textContent =
+      now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  }
+  setInterval(updateJam, 1000);
+  updateJam();
+
+  // Fokus otomatis & terus-menerus ke input tersembunyi, biar scanner (HID keyboard)
+  // selalu bisa "mengetik" ke situ, di mana pun user klik di halaman.
+  const scanInput = document.getElementById('scan-input');
+  const scanStatus = document.getElementById('scan-status');
+  const feedBody = document.getElementById('feed-terbaru');
+
+  function fokusUlang() { scanInput.focus(); }
+  fokusUlang();
+  document.addEventListener('click', fokusUlang);
+  setInterval(fokusUlang, 1000);
+
+  scanInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      const kode = scanInput.value.trim();
+      scanInput.value = '';
+      if (kode.length > 0) prosesScan(kode);
+    }
+  });
+
+  async function prosesScan(kode) {
+    try {
+      const res = await fetch("{{ url_for('scan') }}", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kode: kode })
+      });
+      const data = await res.json();
+
+      if (data.ok) {
+        scanStatus.className = "scan-status ok";
+        scanStatus.textContent = `✅ ${data.nama} — ${data.tipe.toUpperCase()} (${data.waktu})`;
+        tambahKeFeed(data);
+      } else {
+        scanStatus.className = "scan-status gagal";
+        scanStatus.textContent = `⚠️ ${data.pesan}`;
+      }
+    } catch (err) {
+      scanStatus.className = "scan-status gagal";
+      scanStatus.textContent = "⚠️ Gagal terhubung ke server.";
+    }
+
+    setTimeout(() => {
+      scanStatus.className = "scan-status";
+      scanStatus.textContent = "Arahkan kartu ke mesin scanner…";
+    }, 4000);
+  }
+
+  function tambahKeFeed(data) {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${data.waktu}</td>
+      <td>${data.nama}</td>
+      <td>${data.kelompok || '-'}</td>
+      <td><span class="chip chip-${data.tipe}">${data.tipe.charAt(0).toUpperCase() + data.tipe.slice(1)}</span></td>
+    `;
+    feedBody.prepend(row);
+  }
+</script>
+{% endblock %}

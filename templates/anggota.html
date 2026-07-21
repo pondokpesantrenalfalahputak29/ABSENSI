@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Data Anggota{% endblock %}
+
+{% block content %}
+<div class="topbar">
+  <h2>Data Anggota</h2>
+  <div style="display:flex; gap:8px;">
+    <a href="{{ url_for('cetak_semua_kartu') }}" class="btn btn-secondary" target="_blank">🖨️ Cetak Semua Kartu</a>
+    <a href="{{ url_for('tambah_anggota') }}" class="btn btn-primary">+ Tambah Anggota</a>
+  </div>
+</div>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>Kode Kartu</th>
+        <th>NIS</th>
+        <th>Nama</th>
+        <th>Kelas</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in daftar %}
+      <tr>
+        <td><code>{{ a.kode_kartu }}</code></td>
+        <td>{{ a.nis or '-' }}</td>
+        <td>{{ a.nama }}</td>
+        <td>{{ a.kelompok or '-' }}</td>
+        <td>
+          <span class="chip {{ 'chip-masuk' if a.status == 'aktif' else 'chip-pulang' }}">
+            {{ a.status|capitalize }}
+          </span>
+        </td>
+        <td style="text-align:right; white-space:nowrap;">
+          <a href="{{ url_for('kartu_anggota', anggota_id=a.id) }}" class="btn btn-secondary" target="_blank">🖨️ Kartu</a>
+          <a href="{{ url_for('ubah_anggota', anggota_id=a.id) }}" class="btn btn-outline">Ubah</a>
+          {% if session.get('peran') == 'admin' %}
+          <form method="POST" action="{{ url_for('hapus_anggota', anggota_id=a.id) }}" style="display:inline;"
+                onsubmit="return confirm('Yakin hapus data {{ a.nama }}?');">
+            <button type="submit" class="btn btn-danger">Hapus</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6" style="color: var(--on-surface-variant);">Belum ada data anggota.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartu Anggota — {{ anggota.nama }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    @page { size: 3.375in 2.125in; margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="kartu-wrap">
+    <div class="kartu-toolbar">
+      <a href="{{ url_for('daftar_anggota') }}" class="btn btn-outline">← Kembali</a>
+      <button onclick="window.print()" class="btn btn-primary">🖨️ Cetak Kartu</button>
+    </div>
+
+    <div class="id-card">
+      <div class="strip"></div>
+      <div class="body">
+        <div class="instansi">🕌 Absensi Pesantren</div>
+        <div class="nama">{{ anggota.nama }}</div>
+        <div class="detail">
+          <b>NIS:</b> {{ anggota.nis or '-' }}<br>
+          <b>Kelas:</b> {{ anggota.kelompok or '-' }}<br>
+          <b>Alamat:</b> {{ anggota.alamat or '-' }}
+        </div>
+        <div class="footer">
+          <div class="kode">{{ anggota.kode_kartu }}</div>
+          <div class="qr">
+            <img src="data:image/png;base64,{{ qr_b64 }}" alt="QR {{ anggota.kode_kartu }}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

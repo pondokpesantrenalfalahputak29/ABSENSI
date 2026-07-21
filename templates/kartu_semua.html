@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cetak Semua Kartu Anggota</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    @page { size: A4; margin: 0.4in; }
+  </style>
+</head>
+<body>
+  <div class="kartu-wrap">
+    <div class="kartu-toolbar">
+      <a href="{{ url_for('daftar_anggota') }}" class="btn btn-outline">← Kembali</a>
+
+      <form method="GET" style="display:flex; gap:8px; align-items:center;">
+        <select name="kelompok" onchange="this.form.submit()">
+          <option value="">Semua Kelompok</option>
+          {% for k in semua_kelompok %}
+          <option value="{{ k }}" {{ 'selected' if k == kelompok_terpilih }}>{{ k }}</option>
+          {% endfor %}
+        </select>
+      </form>
+
+      <button onclick="window.print()" class="btn btn-primary">🖨️ Cetak Semua ({{ kartu_list|length }})</button>
+    </div>
+
+    {% if kartu_list %}
+    <div class="kartu-grid">
+      {% for item in kartu_list %}
+      {% set anggota = item.anggota %}
+      <div class="id-card">
+        <div class="strip"></div>
+        <div class="body">
+          <div class="instansi">🕌 Absensi Pesantren</div>
+          <div class="nama">{{ anggota.nama }}</div>
+          <div class="detail">
+            <b>NIS:</b> {{ anggota.nis or '-' }}<br>
+            <b>Kelas:</b> {{ anggota.kelompok or '-' }}<br>
+            <b>Alamat:</b> {{ anggota.alamat or '-' }}
+          </div>
+          <div class="footer">
+            <div class="kode">{{ anggota.kode_kartu }}</div>
+            <div class="qr">
+              <img src="data:image/png;base64,{{ item.qr_b64 }}" alt="QR {{ anggota.kode_kartu }}">
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p style="text-align:center; color: var(--on-surface-variant);">Tidak ada data anggota untuk dicetak.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

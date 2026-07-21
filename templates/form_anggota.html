@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Ubah' if anggota else 'Tambah' }} Anggota{% endblock %}
+
+{% block content %}
+<div class="topbar">
+  <h2>{{ 'Ubah Anggota' if anggota else 'Tambah Anggota' }}</h2>
+  <div style="display:flex; gap:8px;">
+    {% if anggota %}
+    <a href="{{ url_for('kartu_anggota', anggota_id=anggota.id) }}" class="btn btn-secondary" target="_blank">🖨️ Cetak Kartu</a>
+    {% endif %}
+    <a href="{{ url_for('daftar_anggota') }}" class="btn btn-outline">← Kembali</a>
+  </div>
+</div>
+
+<div class="card" style="max-width: 480px;">
+  <form method="POST">
+    <div class="field">
+      <label for="kode_kartu">Kode Kartu / Barcode</label>
+      <input type="text" id="kode_kartu" name="kode_kartu" required autofocus
+             value="{{ anggota.kode_kartu if anggota else '' }}"
+             placeholder="Scan kartu di sini atau ketik manual">
+    </div>
+    <div class="field">
+      <label for="nama">Nama Lengkap</label>
+      <input type="text" id="nama" name="nama" required
+             value="{{ anggota.nama if anggota else '' }}">
+    </div>
+    <div class="field">
+      <label for="nis">NIS (Nomor Induk Santri)</label>
+      <input type="text" id="nis" name="nis"
+             value="{{ anggota.nis if anggota else '' }}">
+    </div>
+    <div class="field">
+      <label for="kelompok">Kelas / Kelompok / Asrama</label>
+      <input type="text" id="kelompok" name="kelompok"
+             value="{{ anggota.kelompok if anggota else '' }}">
+    </div>
+    <div class="field">
+      <label for="alamat">Alamat</label>
+      <input type="text" id="alamat" name="alamat"
+             value="{{ anggota.alamat if anggota else '' }}">
+    </div>
+    {% if anggota %}
+    <div class="field">
+      <label for="status">Status</label>
+      <select id="status" name="status">
+        <option value="aktif" {{ 'selected' if anggota.status == 'aktif' }}>Aktif</option>
+        <option value="nonaktif" {{ 'selected' if anggota.status == 'nonaktif' }}>Nonaktif</option>
+      </select>
+    </div>
+    {% endif %}
+    <button type="submit" class="btn btn-primary" style="width:100%;">
+      {{ 'Simpan Perubahan' if anggota else 'Tambah Anggota' }}
+    </button>
+  </form>
+</div>
+{% endblock %}
