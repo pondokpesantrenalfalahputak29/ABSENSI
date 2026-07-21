@@ -4,41 +4,49 @@
    ============================================================ */
 
 :root {
-  /* Colors */
-  --surface: #d7fff4;
+  /* Colors — palet profesional: latar netral terang, sidebar navy-charcoal, aksen emerald */
+  --surface: #f4f6f5;
   --surface-container-lowest: #ffffff;
-  --surface-container-low: #bcfeee;
-  --surface-container: #aff6e5;
-  --surface-container-high: #a4f1df;
-  --surface-container-highest: #99ecda;
-  --on-surface: #00362d;
-  --on-surface-variant: #2c655a;
-  --inverse-surface: #00110e;
-  --outline: #498175;
-  --outline-variant: #7fb8ab;
+  --surface-container-low: #eef1f0;
+  --surface-container: #e6eae8;
+  --surface-container-high: #dde2e0;
+  --surface-container-highest: #d3d9d7;
+  --on-surface: #1c2523;
+  --on-surface-variant: #566360;
+  --inverse-surface: #101615;
+  --outline: #e2e6e4;            /* latar body: abu netral sangat terang */
+  --outline-variant: #cfd6d3;
 
-  --primary: #00684f;
-  --on-primary: #c6ffe6;
-  --primary-container: #00fac1;
-  --on-primary-container: #005a43;
+  --primary: #0f6b4f;            /* emerald aksen utama */
+  --on-primary: #ffffff;
+  --primary-container: #d7f5e6;
+  --on-primary-container: #075c40;
 
-  --secondary: #00685a;
-  --on-secondary: #c2fff0;
-  --secondary-container: #4cfcde;
-  --on-secondary-container: #005d50;
+  --secondary: #0f4d5c;
+  --on-secondary: #ffffff;
+  --secondary-container: #dcf0f4;
+  --on-secondary-container: #0a3c48;
 
-  --tertiary: #00647a;
-  --on-tertiary: #e1f6ff;
-  --tertiary-container: #00d2fd;
-  --on-tertiary-container: #004352;
+  --tertiary: #4b5a6b;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #e4e9ee;
+  --on-tertiary-container: #2c3846;
 
-  --error: #b31b25;
-  --on-error: #ffefee;
-  --error-container: #fb5151;
-  --on-error-container: #570008;
+  --error: #b3261e;
+  --on-error: #ffffff;
+  --error-container: #fbe6e4;
+  --on-error-container: #8c1d17;
 
-  --background: #d7fff4;
-  --on-background: #00362d;
+  --background: #eef1f0;
+  --on-background: #1c2523;
+
+  /* Sidebar — navy-charcoal gelap, terpisah dari token surface */
+  --sidebar-bg: #14201f;
+  --sidebar-bg-elevated: #1b2b29;
+  --sidebar-text: #e7ece9;
+  --sidebar-text-muted: #9fb0ac;
+  --sidebar-active-bg: #0f6b4f;
+  --sidebar-active-text: #ffffff;
 
   /* Typography */
   --font-display: 'Montserrat', sans-serif;
@@ -64,7 +72,7 @@
 
 body {
   margin: 0;
-  background: var(--outline); /* Level 0: Deep Sage Grey base */
+  background: var(--background); /* Level 0: latar netral terang, profesional */
   color: var(--on-background);
   font-family: var(--font-body);
   font-size: 16px;
@@ -95,8 +103,8 @@ a { color: var(--primary); }
 .sidebar {
   width: 240px;
   flex-shrink: 0;
-  background: var(--surface-container-lowest);
-  border-right: 1px solid var(--outline-variant);
+  background: var(--sidebar-bg);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
   padding: var(--space-md) var(--space-sm);
   display: flex;
   flex-direction: column;
@@ -106,21 +114,25 @@ a { color: var(--primary); }
 .sidebar .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 16px;
-  color: var(--primary);
+  color: var(--sidebar-text);
   margin-bottom: var(--space-md);
-  padding: 0 var(--space-xs);
+  padding: 4px var(--space-xs) var(--space-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .brand-logo {
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   flex-shrink: 0;
+  background: #ffffff;
+  padding: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .brand-name {
@@ -139,7 +151,7 @@ a { color: var(--primary); }
   gap: 12px;
   padding: 10px var(--space-xs);
   border-radius: var(--radius);
-  color: var(--on-surface-variant);
+  color: var(--sidebar-text-muted);
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
@@ -153,21 +165,22 @@ a { color: var(--primary); }
 }
 
 .sidebar nav a:hover {
-  background: var(--surface-container);
+  background: var(--sidebar-bg-elevated);
+  color: var(--sidebar-text);
 }
 
 .sidebar nav a.active {
-  background: var(--primary-container);
-  color: var(--on-primary-container);
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
   font-weight: 600;
 }
 
 .sidebar .footer-user {
   margin-top: auto;
   padding: var(--space-xs);
-  border-top: 1px solid var(--outline-variant);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 13px;
-  color: var(--on-surface-variant);
+  color: var(--sidebar-text-muted);
 }
 
 .footer-user-name {
@@ -176,6 +189,7 @@ a { color: var(--primary); }
   gap: 6px;
   margin-bottom: 4px;
   font-weight: 600;
+  color: var(--sidebar-text);
 }
 
 .footer-user a {
@@ -183,7 +197,11 @@ a { color: var(--primary); }
   align-items: center;
   gap: 6px;
   text-decoration: none;
-  color: var(--primary);
+  color: var(--sidebar-text-muted);
+}
+
+.footer-user a:hover {
+  color: var(--sidebar-text);
 }
 
 .main-content {
@@ -237,7 +255,7 @@ a { color: var(--primary); }
 
 .btn-primary { background: var(--primary-container); color: var(--on-primary-container); }
 .btn-secondary { background: var(--secondary-container); color: var(--on-secondary-container); }
-.btn-outline { background: transparent; color: var(--primary); border: 1px solid var(--outline); }
+.btn-outline { background: transparent; color: var(--primary); border: 1px solid var(--outline-variant); }
 .btn-danger { background: var(--error-container); color: var(--on-error-container); }
 
 .btn-icon {
@@ -330,8 +348,8 @@ tbody tr:hover {
   font-weight: 600;
 }
 
-.chip-masuk { background: rgba(0, 250, 193, 0.25); color: var(--on-primary-container); }
-.chip-pulang { background: rgba(0, 210, 253, 0.25); color: var(--on-tertiary-container); }
+.chip-masuk { background: var(--primary-container); color: var(--on-primary-container); }
+.chip-pulang { background: var(--secondary-container); color: var(--on-secondary-container); }
 
 /* ---------- Flash messages ---------- */
 
@@ -364,12 +382,13 @@ tbody tr:hover {
   font-weight: 700;
   color: var(--primary);
   letter-spacing: -0.02em;
+  line-height: 1.1;          /* mencegah tumpang tindih dengan tanggal */
 }
 
 .scan-hero .tanggal {
   font-size: 18px;
   color: var(--on-surface-variant);
-  margin-top: 4px;
+  margin-top: 14px;          /* diperbesar dari 4px agar turun & tidak menumpuk */
 }
 
 .scan-status {
@@ -392,6 +411,10 @@ tbody tr:hover {
 .scan-status.ok { background: var(--primary-container); color: var(--on-primary-container); }
 .scan-status.gagal { background: var(--error-container); color: var(--on-error-container); }
 
+.scan-hero {
+  border: 1px solid var(--outline-variant);
+}
+
 #scan-input {
   position: absolute;
   opacity: 0;
@@ -405,7 +428,7 @@ tbody tr:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--outline);
+  background: var(--sidebar-bg);
   padding: var(--space-md);
 }
 
@@ -425,8 +448,8 @@ tbody tr:hover {
 }
 
 .auth-logo img {
-  width: 64px;
-  height: 64px;
+  width: 72px;                /* diperbesar dari 64px agar konsisten dengan sidebar */
+  height: 72px;
   object-fit: contain;
   border-radius: var(--radius-md);
 }
@@ -492,8 +515,8 @@ tbody tr:hover {
 }
 
 .id-card-logo {
-  width: 14px;
-  height: 14px;
+  width: 18px;                /* sedikit diperbesar dari 14px */
+  height: 18px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -529,7 +552,7 @@ tbody tr:hover {
 
 .id-card .kode {
   font-size: 8.5px;
-  color: var(--outline);
+  color: var(--on-surface-variant);
   font-family: monospace;
   word-break: break-all;
 }
