@@ -3,12 +3,16 @@
 
 {% block content %}
 <div class="topbar">
-  <h2>{{ 'Ubah Anggota' if anggota else 'Tambah Anggota' }}</h2>
+  <h2><i class="bi {{ 'bi-pencil-square' if anggota else 'bi-person-plus-fill' }}"></i> {{ 'Ubah Anggota' if anggota else 'Tambah Anggota' }}</h2>
   <div style="display:flex; gap:8px;">
     {% if anggota %}
-    <a href="{{ url_for('kartu_anggota', anggota_id=anggota.id) }}" class="btn btn-secondary" target="_blank">🖨️ Cetak Kartu</a>
+    <a href="{{ url_for('kartu_anggota', anggota_id=anggota.id) }}" class="btn btn-secondary" target="_blank">
+      <i class="bi bi-printer-fill"></i> Cetak Kartu
+    </a>
     {% endif %}
-    <a href="{{ url_for('daftar_anggota') }}" class="btn btn-outline">← Kembali</a>
+    <a href="{{ url_for('daftar_anggota') }}" class="btn btn-outline">
+      <i class="bi bi-arrow-left"></i> Kembali
+    </a>
   </div>
 </div>
 
@@ -50,6 +54,7 @@
     </div>
     {% endif %}
     <button type="submit" class="btn btn-primary" style="width:100%;">
+      <i class="bi {{ 'bi-check-lg' if anggota else 'bi-plus-lg' }}"></i>
       {{ 'Simpan Perubahan' if anggota else 'Tambah Anggota' }}
     </button>
   </form>

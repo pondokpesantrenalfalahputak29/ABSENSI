@@ -3,10 +3,14 @@
 
 {% block content %}
 <div class="topbar">
-  <h2>Data Anggota</h2>
+  <h2><i class="bi bi-people-fill"></i> Data Anggota</h2>
   <div style="display:flex; gap:8px;">
-    <a href="{{ url_for('cetak_semua_kartu') }}" class="btn btn-secondary" target="_blank">🖨️ Cetak Semua Kartu</a>
-    <a href="{{ url_for('tambah_anggota') }}" class="btn btn-primary">+ Tambah Anggota</a>
+    <a href="{{ url_for('cetak_semua_kartu') }}" class="btn btn-secondary" target="_blank">
+      <i class="bi bi-printer-fill"></i> Cetak Semua Kartu
+    </a>
+    <a href="{{ url_for('tambah_anggota') }}" class="btn btn-primary">
+      <i class="bi bi-plus-lg"></i> Tambah Anggota
+    </a>
   </div>
 </div>
 
@@ -35,12 +39,18 @@
           </span>
         </td>
         <td style="text-align:right; white-space:nowrap;">
-          <a href="{{ url_for('kartu_anggota', anggota_id=a.id) }}" class="btn btn-secondary" target="_blank">🖨️ Kartu</a>
-          <a href="{{ url_for('ubah_anggota', anggota_id=a.id) }}" class="btn btn-outline">Ubah</a>
+          <a href="{{ url_for('kartu_anggota', anggota_id=a.id) }}" class="btn btn-secondary btn-icon" target="_blank" title="Cetak Kartu">
+            <i class="bi bi-printer-fill"></i>
+          </a>
+          <a href="{{ url_for('ubah_anggota', anggota_id=a.id) }}" class="btn btn-outline btn-icon" title="Ubah">
+            <i class="bi bi-pencil-fill"></i>
+          </a>
           {% if session.get('peran') == 'admin' %}
           <form method="POST" action="{{ url_for('hapus_anggota', anggota_id=a.id) }}" style="display:inline;"
                 onsubmit="return confirm('Yakin hapus data {{ a.nama }}?');">
-            <button type="submit" class="btn btn-danger">Hapus</button>
+            <button type="submit" class="btn btn-danger btn-icon" title="Hapus">
+              <i class="bi bi-trash-fill"></i>
+            </button>
           </form>
           {% endif %}
         </td>

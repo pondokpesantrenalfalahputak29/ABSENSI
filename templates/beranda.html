@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="topbar">
-  <h2>Scan Absensi</h2>
+  <h2><i class="bi bi-qr-code-scan"></i> Scan Absensi</h2>
 </div>
 
 <div class="card scan-hero">
@@ -11,7 +11,8 @@
   <div class="tanggal">{{ hari_ini }}</div>
 
   <div class="scan-status" id="scan-status">
-    Arahkan kartu ke mesin scanner…
+    <i class="bi bi-credit-card-2-front"></i>
+    <span>Arahkan kartu ke mesin scanner…</span>
   </div>
 
   <!-- Input tersembunyi ini yang menangkap ketikan dari scanner (mode HID) -->
@@ -19,7 +20,7 @@
 </div>
 
 <div class="card">
-  <h3 style="margin-bottom: var(--space-sm);">Absensi Terbaru</h3>
+  <h3 style="margin-bottom: var(--space-sm);"><i class="bi bi-clock-history"></i> Absensi Terbaru</h3>
   <table>
     <thead>
       <tr>
@@ -86,20 +87,20 @@
 
       if (data.ok) {
         scanStatus.className = "scan-status ok";
-        scanStatus.textContent = `✅ ${data.nama} — ${data.tipe.toUpperCase()} (${data.waktu})`;
+        scanStatus.innerHTML = `<i class="bi bi-check-circle-fill"></i><span>${data.nama} — ${data.tipe.toUpperCase()} (${data.waktu})</span>`;
         tambahKeFeed(data);
       } else {
         scanStatus.className = "scan-status gagal";
-        scanStatus.textContent = `⚠️ ${data.pesan}`;
+        scanStatus.innerHTML = `<i class="bi bi-exclamation-triangle-fill"></i><span>${data.pesan}</span>`;
       }
     } catch (err) {
       scanStatus.className = "scan-status gagal";
-      scanStatus.textContent = "⚠️ Gagal terhubung ke server.";
+      scanStatus.innerHTML = `<i class="bi bi-exclamation-triangle-fill"></i><span>Gagal terhubung ke server.</span>`;
     }
 
     setTimeout(() => {
       scanStatus.className = "scan-status";
-      scanStatus.textContent = "Arahkan kartu ke mesin scanner…";
+      scanStatus.innerHTML = `<i class="bi bi-credit-card-2-front"></i><span>Arahkan kartu ke mesin scanner…</span>`;
     }, 4000);
   }
 

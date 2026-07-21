@@ -6,26 +6,30 @@
   <title>{% block title %}Absensi Pesantren{% endblock %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
-      <div class="brand">🕌 Absensi Pesantren</div>
+      <div class="brand">
+        <img src="{{ url_for('static', filename='img/logo.webp') }}" alt="Logo Pesantren" class="brand-logo">
+        <span class="brand-name">Absensi Pesantren</span>
+      </div>
       <nav>
         <a href="{{ url_for('beranda') }}" class="{{ 'active' if request.endpoint == 'beranda' }}">
-          <span>📷</span><span class="label">Scan Absensi</span>
+          <i class="bi bi-qr-code-scan"></i><span class="label">Scan Absensi</span>
         </a>
         <a href="{{ url_for('daftar_anggota') }}" class="{{ 'active' if request.endpoint in ['daftar_anggota', 'tambah_anggota', 'ubah_anggota'] }}">
-          <span>👥</span><span class="label">Data Anggota</span>
+          <i class="bi bi-people-fill"></i><span class="label">Data Anggota</span>
         </a>
         <a href="{{ url_for('laporan') }}" class="{{ 'active' if request.endpoint == 'laporan' }}">
-          <span>📊</span><span class="label">Laporan</span>
+          <i class="bi bi-bar-chart-line-fill"></i><span class="label">Laporan</span>
         </a>
       </nav>
       <div class="footer-user">
-        {{ session.get('nama_lengkap', '') }}<br>
-        <a href="{{ url_for('logout') }}">Keluar</a>
+        <div class="footer-user-name"><i class="bi bi-person-circle"></i> {{ session.get('nama_lengkap', '') }}</div>
+        <a href="{{ url_for('logout') }}"><i class="bi bi-box-arrow-right"></i> Keluar</a>
       </div>
     </aside>
 
@@ -33,7 +37,10 @@
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
           {% for category, message in messages %}
-            <div class="flash flash-{{ category }}">{{ message }}</div>
+            <div class="flash flash-{{ category }}">
+              <i class="bi {{ 'bi-check-circle-fill' if category == 'success' else 'bi-exclamation-triangle-fill' }}"></i>
+              <span>{{ message }}</span>
+            </div>
           {% endfor %}
         {% endif %}
       {% endwith %}
