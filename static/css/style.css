@@ -482,51 +482,100 @@ tbody tr:hover {
   border-radius: var(--radius-md);
   box-shadow: 0 8px 24px rgba(0, 20, 15, 0.15);
   border: 1px solid var(--outline-variant);
-  display: flex;
   overflow: hidden;
   page-break-inside: avoid;
   break-inside: avoid;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: var(--font-body);
 }
 
-.id-card .strip {
-  width: 10px;
+/* Header berwarna solid — identitas institusi + judul kartu */
+.id-card .header {
+  background: linear-gradient(120deg, var(--primary), var(--secondary));
+  color: #fff;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
   flex-shrink: 0;
-  background: linear-gradient(180deg, var(--primary), var(--tertiary));
 }
 
+.id-card .header img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #fff;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.id-card .header .header-text {
+  line-height: 1.2;
+  min-width: 0;
+}
+
+.id-card .header .instansi {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 8.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.92;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.id-card .header .judul-kartu {
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* Badan kartu: avatar inisial + data */
 .id-card .body {
   flex: 1;
   min-width: 0;
-  padding: 10px 12px;
+  padding: 9px 12px 8px;
   display: flex;
-  flex-direction: column;
+  gap: 10px;
 }
 
-.id-card .instansi {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+.id-card .avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--primary-container);
+  color: var(--on-primary-container);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 9px;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid var(--surface-container-lowest);
+  box-shadow: 0 0 0 1.5px var(--outline-variant);
+  margin-top: 1px;
 }
 
-.id-card-logo {
-  width: 18px;                /* sedikit diperbesar dari 14px */
-  height: 18px;
-  object-fit: contain;
-  flex-shrink: 0;
+.id-card .info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .id-card .nama {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 13.5px;
   line-height: 1.2;
-  margin-top: 4px;
   color: var(--on-surface);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -534,33 +583,70 @@ tbody tr:hover {
 }
 
 .id-card .detail {
-  font-size: 10.5px;
+  font-size: 9.5px;
   color: var(--on-surface-variant);
   margin-top: 3px;
-  line-height: 1.45;
+  line-height: 1.55;
 }
 
-.id-card .detail b { color: var(--on-surface); font-weight: 600; }
-
-.id-card .footer {
-  margin-top: auto;
+.id-card .detail .baris {
   display: flex;
-  align-items: flex-end;
+  gap: 4px;
+}
+
+.id-card .detail .label {
+  flex-shrink: 0;
+  width: 38px;
+  color: var(--on-surface-variant);
+  font-weight: 500;
+}
+
+.id-card .detail .nilai {
+  color: var(--on-surface);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Footer: kode kartu bergaya barcode + QR dengan bingkai */
+.id-card .footer {
+  flex-shrink: 0;
+  border-top: 1px dashed var(--outline-variant);
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 6px;
+  gap: 8px;
+  background: var(--surface-container-low);
 }
 
 .id-card .kode {
-  font-size: 8.5px;
+  font-size: 8px;
   color: var(--on-surface-variant);
-  font-family: monospace;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.06em;
   word-break: break-all;
 }
 
+.id-card .kode small {
+  display: block;
+  font-size: 6.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  opacity: 0.75;
+  margin-bottom: 1px;
+}
+
 .id-card .qr {
-  width: 60px;
-  height: 60px;
+  width: 46px;
+  height: 46px;
   flex-shrink: 0;
+  background: #fff;
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  padding: 3px;
 }
 
 .id-card .qr img { width: 100%; height: 100%; display: block; }

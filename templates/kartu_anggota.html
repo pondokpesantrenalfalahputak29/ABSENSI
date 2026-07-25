@@ -20,23 +20,28 @@
     </div>
 
     <div class="id-card">
-      <div class="strip"></div>
+      <div class="header">
+        <img src="{{ url_for('static', filename='img/logo.webp') }}" alt="Logo">
+        <div class="header-text">
+          <div class="instansi">Absensi Pesantren</div>
+          <div class="judul-kartu">Kartu Tanda Anggota</div>
+        </div>
+      </div>
       <div class="body">
-        <div class="instansi">
-          <img src="{{ url_for('static', filename='img/logo.webp') }}" alt="Logo" class="id-card-logo">
-          Absensi Pesantren
-        </div>
-        <div class="nama">{{ anggota.nama }}</div>
-        <div class="detail">
-          <b>NIS:</b> {{ anggota.nis or '-' }}<br>
-          <b>Kelas:</b> {{ anggota.kelompok or '-' }}<br>
-          <b>Alamat:</b> {{ anggota.alamat or '-' }}
-        </div>
-        <div class="footer">
-          <div class="kode">{{ anggota.kode_kartu }}</div>
-          <div class="qr">
-            <img src="data:image/png;base64,{{ qr_b64 }}" alt="QR {{ anggota.kode_kartu }}">
+        <div class="avatar">{{ anggota.nama[0]|upper }}</div>
+        <div class="info">
+          <div class="nama">{{ anggota.nama }}</div>
+          <div class="detail">
+            <div class="baris"><span class="label">NIS</span><span class="nilai">{{ anggota.nis or '-' }}</span></div>
+            <div class="baris"><span class="label">Kelas</span><span class="nilai">{{ anggota.kelompok or '-' }}</span></div>
+            <div class="baris"><span class="label">Alamat</span><span class="nilai">{{ anggota.alamat or '-' }}</span></div>
           </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="kode"><small>Kode Kartu</small>{{ anggota.kode_kartu }}</div>
+        <div class="qr">
+          <img src="data:image/png;base64,{{ qr_b64 }}" alt="QR {{ anggota.kode_kartu }}">
         </div>
       </div>
     </div>
