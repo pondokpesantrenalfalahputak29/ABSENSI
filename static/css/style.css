@@ -1,63 +1,75 @@
 /* ============================================================
-   Emerald Institutional — Design Tokens
-   Diterapkan sesuai spesifikasi desain yang diberikan.
+   Tema "Nur Pesantren" — Identitas Visual
+   ------------------------------------------------------------
+   Palet:   parkamen hangat + hijau kubah masjid + aksen kuningan
+   Tipografi: Reem Kufi (display, terinspirasi kaligrafi kufi)
+              Plus Jakarta Sans (body, hangat & mudah dibaca)
+   Motif:   lengkung mihrab (arch) sebagai bingkai lambang,
+            kisi geometris (mashrabiya) sebagai tekstur latar
    ============================================================ */
 
 :root {
-  /* Colors — palet profesional: latar netral terang, sidebar navy-charcoal, aksen emerald */
-  --surface: #f4f6f5;
-  --surface-container-lowest: #ffffff;
-  --surface-container-low: #eef1f0;
-  --surface-container: #e6eae8;
-  --surface-container-high: #dde2e0;
-  --surface-container-highest: #d3d9d7;
-  --on-surface: #1c2523;
-  --on-surface-variant: #566360;
-  --inverse-surface: #101615;
-  --outline: #e2e6e4;            /* latar body: abu netral sangat terang */
-  --outline-variant: #cfd6d3;
+  /* Colors — parkamen hangat, hijau kubah, kuningan */
+  --surface: #f2ede0;
+  --surface-container-lowest: #fffcf5;
+  --surface-container-low: #ece5d3;
+  --surface-container: #e4dcc6;
+  --surface-container-high: #dbd1b7;
+  --surface-container-highest: #d0c4a3;
+  --on-surface: #23291f;
+  --on-surface-variant: #6c6552;
+  --inverse-surface: #14201a;
+  --outline: #e3d9bf;
+  --outline-variant: #d3c5a0;
 
-  --primary: #0f6b4f;            /* emerald aksen utama */
-  --on-primary: #ffffff;
-  --primary-container: #d7f5e6;
-  --on-primary-container: #075c40;
+  --primary: #0b5d45;             /* hijau kubah masjid */
+  --primary-dark: #063d2c;
+  --on-primary: #fbf6e8;
+  --primary-container: #d8ecdf;
+  --on-primary-container: #0a4a37;
 
-  --secondary: #0f4d5c;
-  --on-secondary: #ffffff;
-  --secondary-container: #dcf0f4;
-  --on-secondary-container: #0a3c48;
+  --secondary: #a6472a;           /* terakota senja — lawan dari hijau subuh */
+  --on-secondary: #fdf5ec;
+  --secondary-container: #f2ded1;
+  --on-secondary-container: #7c3013;
+
+  --gold: #b8892e;                /* kuningan / prada */
+  --gold-dark: #8f6a1f;
+  --gold-container: #f2e6c4;
+  --on-gold-container: #6b4e14;
 
   --tertiary: #4b5a6b;
   --on-tertiary: #ffffff;
   --tertiary-container: #e4e9ee;
   --on-tertiary-container: #2c3846;
 
-  --error: #b3261e;
-  --on-error: #ffffff;
-  --error-container: #fbe6e4;
-  --on-error-container: #8c1d17;
+  --error: #a6332a;
+  --on-error: #fdf5ec;
+  --error-container: #f3ddd8;
+  --on-error-container: #7c2015;
 
-  --background: #eef1f0;
-  --on-background: #1c2523;
+  --background: #f2ede0;
+  --on-background: #23291f;
 
-  /* Sidebar — navy-charcoal gelap, terpisah dari token surface */
-  --sidebar-bg: #14201f;
-  --sidebar-bg-elevated: #1b2b29;
-  --sidebar-text: #e7ece9;
-  --sidebar-text-muted: #9fb0ac;
-  --sidebar-active-bg: #0f6b4f;
-  --sidebar-active-text: #ffffff;
+  /* Sidebar — hijau tua nyaris hitam, seperti mihrab di petang hari */
+  --sidebar-bg: #0e211a;
+  --sidebar-bg-elevated: #163027;
+  --sidebar-text: #ece6d3;
+  --sidebar-text-muted: #93a596;
+  --sidebar-active-bg: #0b5d45;
+  --sidebar-active-text: #fbf6e8;
+  --sidebar-gold: #c7a04a;
 
   /* Typography */
-  --font-display: 'Montserrat', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-display: 'Reem Kufi', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
 
-  /* Radius */
+  /* Radius — sedikit lebih tegas/arsitektural, tidak serba bulat */
   --radius-sm: 0.25rem;
   --radius: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
+  --radius-md: 0.65rem;
+  --radius-lg: 0.85rem;
+  --radius-xl: 1.1rem;
   --radius-full: 9999px;
 
   /* Spacing */
@@ -72,7 +84,7 @@
 
 body {
   margin: 0;
-  background: var(--background); /* Level 0: latar netral terang, profesional */
+  background: var(--background);
   color: var(--on-background);
   font-family: var(--font-body);
   font-size: 16px;
@@ -82,16 +94,31 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
+  font-weight: 500;
   margin: 0;
   color: var(--on-surface);
+  letter-spacing: 0.01em;
 }
 
-h1 { font-size: 36px; font-weight: 700; line-height: 44px; letter-spacing: -0.02em; }
-h2 { font-size: 28px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
-h2 i { color: var(--primary); font-size: 24px; }
-h3 { font-size: 22px; font-weight: 600; line-height: 30px; }
+h1 { font-size: 38px; font-weight: 600; line-height: 44px; letter-spacing: 0.01em; }
+h2 { font-size: 27px; font-weight: 600; line-height: 34px; display: flex; align-items: center; gap: 10px; position: relative; }
+h2 i { color: var(--primary); font-size: 22px; }
+h3 { font-size: 21px; font-weight: 600; line-height: 28px; }
+
+/* Coretan emas tipis di bawah judul topbar — motif "prada" pada tepi kain/kaligrafi */
+.topbar h2::after,
+.card h3::after {
+  content: "";
+}
 
 a { color: var(--primary); }
+
+/* ---------- Tekstur kisi geometris (mashrabiya) — dipakai sebagai motif latar ---------- */
+.pattern-kisi {
+  background-image:
+    repeating-linear-gradient(45deg, rgba(199, 160, 74, 0.10) 0 1.5px, transparent 1.5px 34px),
+    repeating-linear-gradient(-45deg, rgba(199, 160, 74, 0.10) 0 1.5px, transparent 1.5px 34px);
+}
 
 /* ---------- Layout shell ---------- */
 
@@ -104,11 +131,12 @@ a { color: var(--primary); }
   width: 240px;
   flex-shrink: 0;
   background: var(--sidebar-bg);
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid rgba(199, 160, 74, 0.18);
   padding: var(--space-md) var(--space-sm);
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  position: relative;
 }
 
 .sidebar .brand {
@@ -116,12 +144,12 @@ a { color: var(--primary); }
   align-items: center;
   gap: 12px;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 17px;
   color: var(--sidebar-text);
   margin-bottom: var(--space-md);
   padding: 4px var(--space-xs) var(--space-sm);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(199, 160, 74, 0.22);
 }
 
 .brand-logo {
@@ -132,11 +160,11 @@ a { color: var(--primary); }
   flex-shrink: 0;
   background: #ffffff;
   padding: 5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 1.5px var(--sidebar-gold), 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
 .brand-name {
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .sidebar nav {
@@ -155,6 +183,7 @@ a { color: var(--primary); }
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
+  border-left: 3px solid transparent;
 }
 
 .sidebar nav a i {
@@ -173,12 +202,13 @@ a { color: var(--primary); }
   background: var(--sidebar-active-bg);
   color: var(--sidebar-active-text);
   font-weight: 600;
+  border-left: 3px solid var(--sidebar-gold);
 }
 
 .sidebar .footer-user {
   margin-top: auto;
   padding: var(--space-xs);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(199, 160, 74, 0.22);
   font-size: 13px;
   color: var(--sidebar-text-muted);
 }
@@ -201,7 +231,7 @@ a { color: var(--primary); }
 }
 
 .footer-user a:hover {
-  color: var(--sidebar-text);
+  color: var(--sidebar-gold);
 }
 
 .main-content {
@@ -217,15 +247,18 @@ a { color: var(--primary); }
   margin-bottom: var(--space-md);
   gap: var(--space-sm);
   flex-wrap: wrap;
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--outline-variant);
 }
 
-/* ---------- Cards / surfaces (Level 1) ---------- */
+/* ---------- Cards / surfaces ---------- */
 
 .card {
   background: var(--surface-container-lowest);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   padding: var(--space-md);
-  box-shadow: 0 8px 24px rgba(0, 20, 15, 0.12);
+  border: 1px solid var(--outline-variant);
+  box-shadow: 0 6px 20px rgba(35, 30, 10, 0.06);
 }
 
 .card + .card { margin-top: var(--space-md); }
@@ -253,8 +286,8 @@ a { color: var(--primary); }
 .btn:hover { filter: brightness(1.06); }
 .btn:active { transform: translateY(1px); }
 
-.btn-primary { background: var(--primary-container); color: var(--on-primary-container); }
-.btn-secondary { background: var(--secondary-container); color: var(--on-secondary-container); }
+.btn-primary { background: var(--primary); color: var(--on-primary); }
+.btn-secondary { background: var(--gold-container); color: var(--on-gold-container); }
 .btn-outline { background: transparent; color: var(--primary); border: 1px solid var(--outline-variant); }
 .btn-danger { background: var(--error-container); color: var(--on-error-container); }
 
@@ -271,9 +304,9 @@ a { color: var(--primary); }
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--on-surface-variant);
   margin-bottom: 6px;
@@ -296,8 +329,8 @@ a { color: var(--primary); }
 .field input:focus,
 .field select:focus {
   outline: none;
-  border-color: var(--primary-container);
-  box-shadow: 0 0 0 3px rgba(0, 250, 193, 0.35);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(184, 137, 46, 0.22);
 }
 
 /* ---------- Tables ---------- */
@@ -312,12 +345,12 @@ thead th {
   text-align: left;
   padding: 12px 16px;
   font-family: var(--font-body);
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--on-surface-variant);
-  border-bottom: 1px solid var(--outline-variant);
+  border-bottom: 2px solid var(--gold-container);
   position: sticky;
   top: 0;
   background: var(--surface-container-lowest);
@@ -330,14 +363,15 @@ tbody td {
 }
 
 tbody tr:nth-child(even) {
-  background: rgba(0, 104, 90, 0.02);
+  background: rgba(184, 137, 46, 0.035);
 }
 
 tbody tr:hover {
-  background: rgba(0, 104, 90, 0.05);
+  background: rgba(11, 93, 69, 0.05);
 }
 
 /* ---------- Chips (status absensi) ---------- */
+/* Masuk = hijau subuh (datang, permulaan hari) · Pulang = terakota senja (pulang, akhir hari) */
 
 .chip {
   display: inline-flex;
@@ -345,7 +379,8 @@ tbody tr:hover {
   padding: 4px 12px;
   border-radius: var(--radius-full);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .chip-masuk { background: var(--primary-container); color: var(--on-primary-container); }
@@ -362,33 +397,51 @@ tbody tr:hover {
   margin-bottom: var(--space-sm);
   font-size: 14px;
   font-weight: 500;
+  border-left: 3px solid transparent;
 }
 
 .flash i { font-size: 16px; flex-shrink: 0; }
 
-.flash-success { background: var(--secondary-container); color: var(--on-secondary-container); }
-.flash-error { background: var(--error-container); color: var(--on-error-container); }
+.flash-success { background: var(--primary-container); color: var(--on-primary-container); border-left-color: var(--primary); }
+.flash-error { background: var(--error-container); color: var(--on-error-container); border-left-color: var(--error); }
 
 /* ---------- Halaman scan (beranda) ---------- */
+/* Bentuk relung: sudut atas melengkung lebar meniru ceruk mihrab tempat kartu "dihadapkan" */
 
 .scan-hero {
   text-align: center;
-  padding: var(--space-xl) var(--space-md);
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+  border-radius: 140px 140px var(--radius-lg) var(--radius-lg);
+  position: relative;
+  background:
+    var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  overflow: hidden;
+}
+
+.scan-hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 10px;
+  background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+  opacity: 0.75;
 }
 
 .scan-hero .jam {
   font-family: var(--font-display);
-  font-size: 64px;
-  font-weight: 700;
+  font-size: 62px;
+  font-weight: 600;
   color: var(--primary);
-  letter-spacing: -0.02em;
-  line-height: 1.1;          /* mencegah tumpang tindih dengan tanggal */
+  letter-spacing: 0.01em;
+  line-height: 1.1;
 }
 
 .scan-hero .tanggal {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--on-surface-variant);
-  margin-top: 14px;          /* diperbesar dari 4px agar turun & tidak menumpuk */
+  margin-top: 14px;
+  font-weight: 500;
 }
 
 .scan-status {
@@ -411,10 +464,6 @@ tbody tr:hover {
 .scan-status.ok { background: var(--primary-container); color: var(--on-primary-container); }
 .scan-status.gagal { background: var(--error-container); color: var(--on-error-container); }
 
-.scan-hero {
-  border: 1px solid var(--outline-variant);
-}
-
 #scan-input {
   position: absolute;
   opacity: 0;
@@ -429,6 +478,9 @@ tbody tr:hover {
   align-items: center;
   justify-content: center;
   background: var(--sidebar-bg);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(199, 160, 74, 0.09) 0 1.5px, transparent 1.5px 34px),
+    repeating-linear-gradient(-45deg, rgba(199, 160, 74, 0.09) 0 1.5px, transparent 1.5px 34px);
   padding: var(--space-md);
 }
 
@@ -437,24 +489,51 @@ tbody tr:hover {
   max-width: 400px;
   background: var(--surface-container-lowest);
   border-radius: var(--radius-xl);
-  padding: var(--space-lg) var(--space-md);
-  box-shadow: 0 12px 32px rgba(0, 20, 15, 0.25);
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  border-top: 3px solid var(--gold);
 }
 
 .auth-logo {
   display: flex;
   justify-content: center;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+/* Bingkai lengkung mihrab di sekeliling lambang — elemen ciri khas halaman masuk */
+.auth-logo .arch-frame {
+  position: relative;
+  width: 92px;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 8px 8px 6px;
+  background: var(--gold-container);
+  border: 2px solid var(--gold);
+  border-radius: 50px 50px 8px 8px / 62px 62px 8px 8px;
+}
+
+.auth-logo .arch-frame::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  background: var(--gold);
+  border-radius: 2px;
 }
 
 .auth-logo img {
-  width: 72px;                /* diperbesar dari 64px agar konsisten dengan sidebar */
-  height: 72px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }
 
-.auth-card h1 { text-align: center; font-size: 24px; margin-bottom: 4px; }
+.auth-card h1 { text-align: center; font-size: 25px; margin-bottom: 4px; }
 .auth-card p.subtitle { text-align: center; color: var(--on-surface-variant); margin-bottom: var(--space-md); font-size: 14px; }
 
 /* ---------- Kartu Identitas (cetak QR) ---------- */
@@ -480,7 +559,7 @@ tbody tr:hover {
   height: 2.125in;
   background: var(--surface-container-lowest);
   border-radius: var(--radius-md);
-  box-shadow: 0 8px 24px rgba(0, 20, 15, 0.15);
+  box-shadow: 0 8px 24px rgba(20, 15, 0, 0.15);
   border: 1px solid var(--outline-variant);
   overflow: hidden;
   page-break-inside: avoid;
@@ -491,15 +570,15 @@ tbody tr:hover {
   font-family: var(--font-body);
 }
 
-/* Header berwarna solid — identitas institusi + judul kartu */
 .id-card .header {
-  background: linear-gradient(120deg, var(--primary), var(--secondary));
+  background: linear-gradient(120deg, var(--primary), var(--primary-dark));
   color: #fff;
   padding: 7px 10px;
   display: flex;
   align-items: center;
   gap: 7px;
   flex-shrink: 0;
+  border-bottom: 2px solid var(--gold);
 }
 
 .id-card .header img {
@@ -519,11 +598,11 @@ tbody tr:hover {
 
 .id-card .header .instansi {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 8.5px;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  opacity: 0.92;
+  opacity: 0.95;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -537,7 +616,6 @@ tbody tr:hover {
   opacity: 0.85;
 }
 
-/* Badan kartu: avatar inisial + data */
 .id-card .body {
   flex: 1;
   min-width: 0;
@@ -560,7 +638,7 @@ tbody tr:hover {
   justify-content: center;
   flex-shrink: 0;
   border: 2px solid var(--surface-container-lowest);
-  box-shadow: 0 0 0 1.5px var(--outline-variant);
+  box-shadow: 0 0 0 1.5px var(--gold);
   margin-top: 1px;
 }
 
@@ -573,9 +651,9 @@ tbody tr:hover {
 
 .id-card .nama {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 13.5px;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--on-surface);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -609,7 +687,6 @@ tbody tr:hover {
   white-space: nowrap;
 }
 
-/* Footer: kode kartu bergaya barcode + QR dengan bingkai */
 .id-card .footer {
   flex-shrink: 0;
   border-top: 1px dashed var(--outline-variant);
@@ -644,7 +721,7 @@ tbody tr:hover {
   height: 46px;
   flex-shrink: 0;
   background: #fff;
-  border: 1px solid var(--outline-variant);
+  border: 1px solid var(--gold);
   border-radius: 4px;
   padding: 3px;
 }
@@ -676,4 +753,5 @@ tbody tr:hover {
   .sidebar nav a span.label { display: none; }
   .sidebar nav a { justify-content: center; }
   .main-content { padding: var(--space-sm); }
+  .scan-hero { border-radius: 80px 80px var(--radius-lg) var(--radius-lg); }
 }
